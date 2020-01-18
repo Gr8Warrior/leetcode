@@ -17,25 +17,13 @@ class PalindromeNumber {
      */
 
     public static boolean isPalindrome(int x) {
-        int num = x;
-        boolean isPositive = (x >= 0) ? true : false;
-        if(!isPositive){
-            return false;
-        }
-        long rev = 0;
-        while (true) {
-            if (rev < Integer.MIN_VALUE || rev > Integer.MAX_VALUE) {
-                return false;
-            } else if (isPositive && x <= 0) {
-                isPositive = (rev == num) ? true : false;
-                return isPositive;
-            } else if (!isPositive && x >= 0) {
-                isPositive = (rev == num) ? true : false;
-                return isPositive;
-            }
-            int rem = x % 10;
+        int num = x, rem = 0;
+        long rev =0;
+        while( x > 0){
+            rem = x%10;
             rev = rev * 10 + rem;
-            x = x / 10;
+            x /=10; 
         }
+        return num == rev;
     }
 }
