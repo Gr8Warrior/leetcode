@@ -1,29 +1,33 @@
 package leetcode;
 
 /**
-{@link 'https://leetcode.com/problems/palindrome-number/'
+ * {@link 'https://leetcode.com/problems/palindrome-number/'
  */
 
 class PalindromeNumber {
     public static void main(String[] args) {
-        boolean isPalindrome = isPalindrome(-121);
+        boolean isPalindrome = isPalindrome(12321);
         System.out.println("isPalindrome = " + isPalindrome);
 
     }
 
-    /** 
+    /**
      * @param number
      * @return isPalindrome
      */
 
     public static boolean isPalindrome(int x) {
-        int num = x, rem = 0;
-        long rev =0;
-        while( x > 0){
-            rem = x%10;
-            rev = rev * 10 + rem;
-            x /=10; 
+        
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
         }
-        return num == rev;
+
+        int revertedNumber = 0;
+        while (x > revertedNumber) {
+            revertedNumber = revertedNumber * 10 + x % 10;
+            x /= 10;
+        }
+
+        return revertedNumber == x || x == revertedNumber/10;
     }
 }
